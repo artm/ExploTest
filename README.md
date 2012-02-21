@@ -69,7 +69,7 @@ static void RunTests()
   Test.Harness.Run(
     typeof(CharacterTests),
     typeof(ObstacleTests),
-    typeof(EnemyTests),
+    typeof(EnemyTests)
   );
 }
 ```
