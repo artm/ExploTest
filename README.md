@@ -35,8 +35,8 @@ Test cases are methods of a class derived from `Test.Case`. I followed the
 SharpUnit example misnaming the class, which is actually more like a
 fixture then a test case, I might rename it at some point.
 
-Any method whose name starts with `Test_` (case insensitive, so `test_` or
-`TEST_` will also work) is considered an individual test. It is useful
+Any method whose name starts with `Test` (case insensitive, so `test` or
+`TEST` will also work) is considered an individual test. It is useful
 to give tests semantic names, like `Test_EnemyDiesWhenShot`, as they
 will appear in fail messages.
 
