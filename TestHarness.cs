@@ -90,6 +90,8 @@ namespace Test {
 				                                   tests_run, tests_succeded, tests_failed);
 				if (tests_run != tests_succeded + tests_failed)
 					Debug.LogError("Test.Harness internal inconsistency: " + test_report);
+				else if (tests_failed > 0)
+					Debug.LogError(test_report);
 				else
 					Debug.Log(test_report);
 	
@@ -97,6 +99,8 @@ namespace Test {
 				                                   asserts_run, asserts_succeded, asserts_failed);
 				if (asserts_run != asserts_succeded + asserts_failed)
 					Debug.LogError("Test.Harness internal inconsistency: " + assert_report);
+				else if (asserts_failed > 0)
+					Debug.LogError(assert_report);
 				else
 					Debug.Log(assert_report);
 			}
