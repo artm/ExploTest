@@ -14,8 +14,8 @@ fails test still continues. I also didn't try to make the framework
 unity agnostic, which means I don't need "adaptor" classes to plug into
 unity's log widget.
 
-There are some other seemingly consmetic, but conceptually inspired
-differences which I'll describe later. Maybe.
+There are some other seemingly consmetic, but in truth conceptual,
+differences which aren't described here.
 
 # Using the framework
 
@@ -27,9 +27,11 @@ really matter, as long as your **test runner class** (see below) can
 access the framework classes. Refer to [script compilation order][order]
 documentation if in doubt.
 
+[order]: http://unity3d.com/support/documentation/ScriptReference/index.Script_compilation_28Advanced29.html
+
 ## Write test cases
 
-Test cases are methods of a class derived from Test.Case. I followed the
+Test cases are methods of a class derived from `Test.Case`. I followed the
 SharpUnit example misnaming the class, which is actually more like a
 fixture then a test case, I might rename it at some point.
 
@@ -38,13 +40,15 @@ Any method whose name starts with `Test_` (case insensitive, so `test_` or
 to give tests semantic names, like `Test_EnemyDiesWhenShot`, as they
 will appear in fail messages.
 
-A new instance of your Test.Case derived class will be created for
+A new instance of your `Test.Case` derived class will be created for
 running each test method.  Setup common to all tests of a particular
 class should go to the constructor, tear down code should go into
-override of a Dispose method (Test.Case is IDisposable)
+override of a Dispose method (`Test.Case` is [IDisposable][])
 
 Use `Test.Case`'s `Assert_*` method to assert some conditions during the
 test.
+
+[IDisposable]: http://msdn.microsoft.com/en-us/library/system.idisposable.aspx
 
 ## Make a test runner
 
@@ -55,10 +59,10 @@ have some test runners in your editor classes, running from the menu
 command, others - in a `Start()` implementations of `MonoBehavior` based
 script, or even inside an `Update()` implementation or a coroutine.
 
-The test suite (a sequence of Test.Case descendant classes to run the
-test methods of) is a params array of Type's:
+The test suite (a sequence of `Test.Case` descendant classes to run the
+test methods of) is a params array of `Type`'s:
 
-{{{
+```
 [MenuItem('Run the tests &t')]
 static void RunTests()
 {
@@ -68,4 +72,4 @@ static void RunTests()
     typeof(EnemyTests),
   );
 }
-}}}
+```
