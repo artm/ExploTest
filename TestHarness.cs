@@ -39,6 +39,14 @@ namespace Test {
 											tests_failed++;
 										else
 											tests_succeded++;
+									} catch(TargetParameterCountException ex) {
+										Debug.LogError(string.Format("Test interface error running {0} in {1}: {2}\n{3}\n{4}\n",
+										                             method.Name,
+										                             type.FullName,
+										                             ex.Message,
+										                             ex.GetType().FullName,
+										                             ex.StackTrace));
+										tests_failed++;
 									} catch(TargetInvocationException ex) {
 										// we're interested in actual error...
 										Exception iex = ex.InnerException;
