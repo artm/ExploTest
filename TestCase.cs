@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.IO;
 using System.Text.RegularExpressions;
 
 using UnityEngine;
@@ -31,6 +32,17 @@ namespace Test
 		{
 			assert( expected.Equals(actual), () => string.Format("Expected {0}, got {1}", expected, actual) );
 		}
+		
+		public void Assert_SamePath(string expected, string actual) 
+		{
+			// normalize paths
+			assert ( string.Compare(Path.GetFullPath(expected).TrimEnd('\\'),
+			                        Path.GetFullPath(actual).TrimEnd('\\'), 
+    								System.StringComparison.InvariantCultureIgnoreCase) == 0,
+			               () => string.Format("Expected path {0}, got {1}", expected, actual) );
+			
+		}
+		
 		public void Assert_Approximately (float expected, float actual)
 		{
 			assert( Mathf.Approximately(expected, actual),
